@@ -16,7 +16,7 @@ public class ReaderMathematicalExpression {
 	public double readerExpresion(String expresion) throws TypeCalculateException {
 		this.expresion = expresion;
 		removeSpaces();
-		return calculateExpresion(expresion);
+		return calculateExpresion(this.expresion);
 	}
 
 	private double calculateExpresion(String expresion) throws TypeCalculateException {
