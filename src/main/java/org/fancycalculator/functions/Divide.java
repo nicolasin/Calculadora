@@ -9,7 +9,7 @@ public class Divide implements CalculatorFunction {
 
 		if (functionParameters.length > 2) {
 			throw new ManyParametersExceptions("Many parameters");
-		} else if (functionParameters.length < 1) {
+		} else if (functionParameters.length <= 1) {
 			throw new FewParametersExceptions("Few Parameters");
 		} else if (functionParameters[1] == 0) {
 			throw new ArithmeticException("Can´t divide by Zero");

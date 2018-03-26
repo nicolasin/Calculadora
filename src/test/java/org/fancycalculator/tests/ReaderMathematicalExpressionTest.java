@@ -22,7 +22,7 @@ public class ReaderMathematicalExpressionTest {
 	@Test
 	public void calcSimple() throws TypeCalculateException {
 		assertEquals(2,calculadora.readerExpresion("add(1,1)"),0);
-		assertEquals(-1,calculadora.readerExpresion("substract(1,2)"),0);
+		assertEquals(-1,calculadora.readerExpresion("subtract(1,2)"),0);
 		assertEquals(1,calculadora.readerExpresion("multiply(1,1)"),0);
 		assertEquals(5,calculadora.readerExpresion("divide(10,2)"),0);
 		assertEquals(5,calculadora.readerExpresion("sqrt(25)"),0);
@@ -35,6 +35,12 @@ public class ReaderMathematicalExpressionTest {
 		assertEquals(12,calculadora.readerExpresion("add(3,4,divide(10,2))"),0);
 		assertEquals(18,calculadora.readerExpresion("add(3,4,divide(multiply(5,2),2),6)"),0);
 	
+	}
+	@Test
+	public void calcWithResult() throws TypeCalculateException{
+		assertEquals(6,calculadora.readerExpresion("multiply(3,add(1,1))"),0);
+		assertEquals(15,calculadora.readerExpresion("add(result(),4,divide(10,2))"),0);
+		assertEquals(30,calculadora.readerExpresion("add(result(),4,divide(multiply(5,2),2),6)"),0);
 	}
 	
 }

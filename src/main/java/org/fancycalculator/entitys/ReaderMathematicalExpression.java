@@ -3,7 +3,6 @@ package org.fancycalculator.entitys;
 import java.util.ArrayList;
 import java.util.List;
 
-
 import org.fancycalculator.exceptions.TypeCalculateException;
 
 public class ReaderMathematicalExpression {
@@ -25,9 +24,12 @@ public class ReaderMathematicalExpression {
 			return Double.parseDouble(expresion);
 		} else {
 			String typeCalc = expresion.substring(0, expresion.indexOf("("));
+			if (typeCalc.equals("result")) {
+				return calculator.result();
+			}
 			String params = expresion;
 			if (expresion.contains("(") || expresion.contains(")")) {
-				params = expresion.substring(expresion.indexOf("(")+1, expresion.lastIndexOf(")"));
+				params = expresion.substring(expresion.indexOf("(") + 1, expresion.lastIndexOf(")"));
 			}
 			List<String> parameters = DivideExpresion(params);
 			double[] results = new double[parameters.size()];
@@ -40,8 +42,7 @@ public class ReaderMathematicalExpression {
 	}
 
 	public static boolean validatedOperacion(String operacion) {
-		// Not Implemented Function
-		return true;
+		return countCountains(operacion, '(')-countCountains(operacion, ')') == 0;
 	}
 
 	private List<String> DivideExpresion(String expresion) {
@@ -49,17 +50,17 @@ public class ReaderMathematicalExpression {
 		String[] divide = expresion.split(",");
 		String auxsiliarExpresion = "";
 		List<String> finalDivide = new ArrayList<String>();
-		
+
 		for (int i = 0; i < divide.length; i++) {
 			auxsiliarExpresion = auxsiliarExpresion + divide[i];
 			if (divide[i].contains("(")) {
-				
+
 				isExpresion = (countCountains(auxsiliarExpresion, '(') - countCountains(auxsiliarExpresion, ')'));
 			}
 			if (divide[i].contains(")")) {
 				isExpresion = (countCountains(auxsiliarExpresion, '(') - countCountains(auxsiliarExpresion, ')'));
-			} 
-			if (isExpresion !=0) {
+			}
+			if (isExpresion != 0) {
 				if (divide[i].contains(")")) {
 					auxsiliarExpresion = auxsiliarExpresion.concat(",");
 
@@ -76,19 +77,21 @@ public class ReaderMathematicalExpression {
 		}
 		return finalDivide;
 	}
-	private int countCountains(String s, char c) {
+
+	private static int countCountains(String s, char c) {
 		char[] caracters = s.toCharArray();
 		int count = 0;
-		for(char x:caracters){
-			if(x==c) {
-				count ++;
+		for (char x : caracters) {
+			if (x == c) {
+				count++;
 			}
 		}
 		return count;
-		
+
 	}
+
 	private void removeSpaces() {
-		this.expresion.replaceAll(" ", "");
+		this.expresion = this.expresion.replaceAll(" ", "");
 	}
 
 	private boolean isFinal(String expresion) {
