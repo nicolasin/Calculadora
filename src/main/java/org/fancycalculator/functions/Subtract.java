@@ -2,7 +2,7 @@ package org.fancycalculator.functions;
 
 import org.fancycalculator.exceptions.FewParametersExceptions;
 
-public class Substract implements CalculatorFunction{
+public class Subtract implements CalculatorFunction{
 
 	@Override
 	public double calculate(double[] functionParameters) throws ArithmeticException {
@@ -21,7 +21,7 @@ public class Substract implements CalculatorFunction{
 
 	@Override
 	public String getFunctionName() {
-		return "substract";
+		return "subtract";
 	}
 
 }
