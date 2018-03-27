@@ -16,8 +16,8 @@ public class mainFunction {
 			do {
 				System.out.println("Gibt Operacion: ");
 				operacion = s.nextLine();
-				if (ReaderMathematicalExpression.validatedOperacion(operacion)) {
-					System.out.println("Resultado:" + reader.readerExpresion(operacion));
+				if (ReaderMathematicalExpression.isCorrect(operacion)) {
+					System.out.println("Resultado:" + reader.readerExpression(operacion));
 				} else {
 					System.out.println("Error in the Mathematical expresion");
 				}

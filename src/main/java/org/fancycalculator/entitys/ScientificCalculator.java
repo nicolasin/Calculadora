@@ -24,6 +24,14 @@ public class ScientificCalculator {
 		this.result = 0;
 	}
 
+	/**
+	 * @param type
+	 *            String with the function to use
+	 * @param double[]
+	 *            parameters to the function
+	 * @return the result to calculate the function with this parameters
+	 * @throws TypeCalculateException
+	 */
 	public double calculate(String type, double[] parameters) throws TypeCalculateException {
 		type = type.toLowerCase();
 		if (type.equals("result")) {
@@ -36,6 +44,11 @@ public class ScientificCalculator {
 		}
 	}
 
+	/**
+	 * @param typeCalculator
+	 *            Type from function to checking
+	 * @return boolean if the expression is correct
+	 */
 	private boolean isCorrectString(String typeCalculator) {
 		for (Map.Entry<String, CalculatorFunction> entry : calculatorFunctions.entrySet()) {
 			if (entry.getKey().equals(typeCalculator)) {
@@ -45,7 +58,27 @@ public class ScientificCalculator {
 		return false;
 	}
 
+	/**
+	 * @return double return the result for the last function used
+	 */
 	public double result() {
 		return this.result;
 	}
+
+	/**
+	 * Add new Function to the calculator
+	 * 
+	 * @param calculatorfunction
+	 *            Object with the new Calculator
+	 * @throws TypeCalculateException
+	 *             if the functions is all ready exist
+	 */
+	public void addFunction(CalculatorFunction calculatorfunction) throws TypeCalculateException {
+		if (!isCorrectString(calculatorfunction.getFunctionName())) {
+			calculatorFunctions.put(calculatorfunction.getFunctionName(), calculatorfunction);
+		} else {
+			throw new TypeCalculateException("this Function is all ready into the calculator");
+		}
+	}
+
 }

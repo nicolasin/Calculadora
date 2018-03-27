@@ -6,6 +6,7 @@ import org.fancycalculator.entitys.ScientificCalculator;
 import org.fancycalculator.exceptions.FewParametersExceptions;
 import org.fancycalculator.exceptions.ManyParametersExceptions;
 import org.fancycalculator.exceptions.TypeCalculateException;
+import org.fancycalculator.functions.*;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -111,5 +112,22 @@ public class ScientificCalculatorTest {
 	@Test(expected = FewParametersExceptions.class)
 	public void testMultiplyFewParameters()throws ArithmeticException, TypeCalculateException{
 		calculadora.calculate("multiply",new double[]{});
+	}
+	@Test
+	public void addNewFunction() throws TypeCalculateException{
+		try {
+			calculadora.calculate("pow", new double[] { 3,3});
+			fail("Throw Excepted");
+		}catch(TypeCalculateException e) {
+			assertEquals("Error type of calculator",e.getMessage());
+		}
+		calculadora.addFunction(new pow());
+		assertEquals(27,calculadora.calculate("pow",new double[] {3,3}), 0);
+		assertEquals(64,calculadora.calculate("pow",new double[] {4,3}), 0);
+		
+	}
+	@Test(expected=TypeCalculateException.class)
+	public void newFunctionErrorExpected() throws TypeCalculateException{
+		calculadora.addFunction(new Add());
 	}
 }

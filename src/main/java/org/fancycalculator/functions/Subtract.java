@@ -4,6 +4,9 @@ import org.fancycalculator.exceptions.FewParametersExceptions;
 
 public class Subtract implements CalculatorFunction{
 
+	/* (non-Javadoc)
+	 * @see org.fancycalculator.functions.CalculatorFunction#calculate(double[])
+	 */
 	@Override
 	public double calculate(double[] functionParameters) throws ArithmeticException {
 		int length = functionParameters.length;
@@ -19,6 +22,9 @@ public class Subtract implements CalculatorFunction{
 
 	}
 
+	/* (non-Javadoc)
+	 * @see org.fancycalculator.functions.CalculatorFunction#getFunctionName()
+	 */
 	@Override
 	public String getFunctionName() {
 		return "subtract";

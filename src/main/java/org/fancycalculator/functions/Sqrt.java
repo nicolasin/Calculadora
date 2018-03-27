@@ -2,6 +2,9 @@ package org.fancycalculator.functions;
 
 public class Sqrt implements CalculatorFunction {
 
+	/* (non-Javadoc)
+	 * @see org.fancycalculator.functions.CalculatorFunction#calculate(double[])
+	 */
 	@Override
 	public double calculate(double[] functionParameters) throws ArithmeticException {
 		if (functionParameters.length != 1) {
@@ -13,6 +16,9 @@ public class Sqrt implements CalculatorFunction {
 		}
 	}
 
+	/* (non-Javadoc)
+	 * @see org.fancycalculator.functions.CalculatorFunction#getFunctionName()
+	 */
 	@Override
 	public String getFunctionName() {
 		return "sqrt";

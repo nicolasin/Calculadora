@@ -4,6 +4,9 @@ import org.fancycalculator.exceptions.FewParametersExceptions;
 
 public class Multiply implements CalculatorFunction {
 
+	/* (non-Javadoc)
+	 * @see org.fancycalculator.functions.CalculatorFunction#calculate(double[])
+	 */
 	@Override
 	public double calculate(double[] functionParameters) throws ArithmeticException {
 		if (functionParameters.length == 0) {
@@ -16,6 +19,9 @@ public class Multiply implements CalculatorFunction {
 		return acum;
 	}
 
+	/* (non-Javadoc)
+	 * @see org.fancycalculator.functions.CalculatorFunction#getFunctionName()
+	 */
 	@Override
 	public String getFunctionName() {
 		return "multiply";
