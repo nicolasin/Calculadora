@@ -8,6 +8,7 @@ import org.fancycalculator.exceptions.TypeCalculateException;
 public class ReaderMathematicalExpression {
 	String expression;
 	ScientificCalculator calculator;
+	static final String  RESULT = "result";
 
 	public ReaderMathematicalExpression() {
 		calculator = new ScientificCalculator();
@@ -34,7 +35,7 @@ public class ReaderMathematicalExpression {
 			return Double.parseDouble(expression);
 		} else {
 			String typeCalc = expression.substring(0, expression.indexOf("("));
-			if (typeCalc.equals("result")) {
+			if (typeCalc.equals(RESULT)) {
 				return calculator.result();
 			}
 			String params = expression;
@@ -63,21 +64,17 @@ public class ReaderMathematicalExpression {
 	 * @return List String with separated parameters 
 	 */
 	private List<String> divideExpression(String expression) {
-		int isexpression = 0;
+		int isExpression = 0;
 		String[] divide = expression.split(",");
 		String auxsiliarexpression = "";
 		List<String> finalDivide = new ArrayList<String>();
 
 		for (int i = 0; i < divide.length; i++) {
 			auxsiliarexpression = auxsiliarexpression + divide[i];
-			if (divide[i].contains("(")) {
-
-				isexpression = (countCountains(auxsiliarexpression, '(') - countCountains(auxsiliarexpression, ')'));
+			if (divide[i].contains("(") || divide[i].contains(")")) {
+				isExpression = (countCountains(auxsiliarexpression, '(') - countCountains(auxsiliarexpression, ')'));
 			}
-			if (divide[i].contains(")")) {
-				isexpression = (countCountains(auxsiliarexpression, '(') - countCountains(auxsiliarexpression, ')'));
-			}
-			if (isexpression != 0) {
+			if (isExpression != 0) {
 				if (divide[i].contains(")")) {
 					auxsiliarexpression = auxsiliarexpression.concat(",");
 				} else {
